@@ -11,7 +11,7 @@ import PathDashboard from "./PathDashboard";
 import ProfilePage from "./ProfilePage";
 import { stageTransition } from "./motionVariants";
 
-const BACKEND_URL = "http://localhost:4000";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 type Stage = "onboarding" | "possibilities" | "path" | "profile";
 

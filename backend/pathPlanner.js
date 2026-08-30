@@ -43,7 +43,7 @@ app.use(cors());
 app.use(express.json());
 
 const CORPUS_PATH = path.join(__dirname, "cleaned_corpus.json");
-const ML_SERVICE_URL = "http://localhost:8000/recommend";
+const ML_SERVICE_URL = (process.env.ML_SERVICE_URL || "http://localhost:8000") + "/recommend";
 const ITEMS_PER_MILESTONE = 3;
 
 // Human-readable labels for the domains present in cleaned_corpus.json.
@@ -365,13 +365,22 @@ app.post("/path", async (req, res) => {
 // what /path actually knows how to match against.
 app.get("/profile/:learnerId", (req, res) => {
   const state = getLearnerState(req.params.learnerId);
+
+  // Resolve ids to actual course details so the profile page can show
+  // real names, not just counts/ids.
+  const resolveItems = (idSet) =>
+    Array.from(idSet)
+      .map((id) => corpusById[id])
+      .filter(Boolean)
+      .map((item) => ({ id: item.id, name: item.name, domain: item.domain, difficulty: item.difficulty }));
+
   res.json({
     learnerId: req.params.learnerId,
     level: state.level,
     knownSkills: state.knownSkills,
     priorExperience: state.priorExperience,
-    completedItemIds: Array.from(state.completed),
-    struggledItemIds: Array.from(state.struggled),
+    completedItems: resolveItems(state.completed),
+    struggledItems: resolveItems(state.struggled),
   });
 });
 
