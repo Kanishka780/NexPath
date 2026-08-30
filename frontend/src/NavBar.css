@@ -1,0 +1,230 @@
+.navbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: var(--bg-panel);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 36px;
+  gap: 20px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 12px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.navbar-mark {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--gradient-trail);
+  box-shadow: 0 4px 14px rgba(255, 157, 46, 0.35);
+  color: #1a1206;
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.navbar-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.navbar-name {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.navbar-tagline {
+  font-size: 9px;
+  color: var(--accent-growth);
+  letter-spacing: 0.12em;
+}
+
+/* Center Tabs Navigation */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-panel-alt);
+  padding: 4px;
+  border-radius: 28px;
+  border: 1px solid var(--border-subtle);
+}
+
+.nav-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 22px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 1;
+}
+
+.nav-tab:hover:not(:disabled) {
+  color: var(--text-primary);
+}
+
+.nav-tab--active {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.nav-tab--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nav-tab-icon {
+  font-size: 14px;
+}
+
+.nav-tab-indicator {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: var(--bg-panel-solid);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+  z-index: -1;
+}
+
+/* Right Section & User Profile */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 12px 4px 6px;
+  border-radius: 20px;
+}
+
+.user-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-growth);
+  color: #072320;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-user {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navbar-signout {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 10px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.navbar-signout:hover {
+  color: var(--accent-pink);
+  background: rgba(255, 107, 157, 0.1);
+}
+
+.navbar-theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 6px 12px;
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-theme-toggle:hover {
+  background: var(--bg-panel-solid);
+  border-color: var(--accent-trail);
+}
+
+.navbar-theme-icon {
+  font-size: 14px;
+}
+
+@media (max-width: 820px) {
+  .navbar-nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .navbar {
+    flex-wrap: wrap;
+    padding: 10px 16px;
+  }
+  .navbar-tagline {
+    display: none;
+  }
+}

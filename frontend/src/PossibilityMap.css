@@ -1,0 +1,153 @@
+.possibility-shell {
+  min-height: calc(100vh - 76px);
+  padding: 36px 32px 60px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.possibility-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.possibility-eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--accent-trail);
+  display: inline-block;
+  background: rgba(255, 157, 46, 0.12);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 157, 46, 0.2);
+}
+
+.possibility-header h1 {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 42px);
+  margin: 14px 0 10px;
+  color: var(--text-primary);
+}
+
+.possibility-sub {
+  color: var(--text-muted);
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.possibility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .possibility-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+.possibility-card {
+  background: var(--bg-panel);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.possibility-card:hover {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.possibility-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.possibility-card-top h2 {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 22px;
+  margin: 4px 0 0;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.possibility-match {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #072320;
+  background: var(--gradient-growth);
+  border-radius: 20px;
+  padding: 4px 12px;
+  box-shadow: 0 2px 10px rgba(31, 230, 196, 0.25);
+}
+
+.possibility-explanation {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.possibility-topitem {
+  color: var(--text-muted);
+  font-size: 12px;
+  background: var(--bg-panel-alt);
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  margin: 0;
+}
+
+.possibility-explore {
+  background: var(--gradient-trail);
+  color: #1a1003;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 4px 14px rgba(255, 157, 46, 0.25);
+  margin-top: 4px;
+}
+
+.possibility-explore:hover {
+  opacity: 0.95;
+}
+
+.possibility-loading-box,
+.possibility-error {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 100px 20px;
+  background: var(--bg-panel);
+  border-radius: 24px;
+  border: 1px solid var(--border-subtle);
+  max-width: 600px;
+  margin: 40px auto;
+}

@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap");
+
+:root,
+[data-theme="dark"] {
+  --bg-deep: #0b1a20;
+  --bg-panel: rgba(17, 40, 49, 0.85);
+  --bg-panel-solid: #112831;
+  --bg-panel-alt: rgba(24, 53, 64, 0.75);
+  --bg-card: rgba(20, 46, 56, 0.7);
+  --accent-trail: #ff9d2e;
+  --accent-trail-2: #ffc93c;
+  --accent-growth: #1fe6c4;
+  --accent-growth-2: #3ddad0;
+  --accent-pink: #ff6b9d;
+  --text-primary: #fbfaf7;
+  --text-secondary: #c2e0e5;
+  --text-muted: #7f9fa6;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(31, 230, 196, 0.25);
+  --gradient-trail: linear-gradient(135deg, var(--accent-trail), var(--accent-trail-2));
+  --gradient-growth: linear-gradient(135deg, var(--accent-growth), var(--accent-growth-2));
+  --gradient-bg: linear-gradient(180deg, #0d2028 0%, #071318 100%);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 20px rgba(31, 230, 196, 0.12);
+  --backdrop-blur: blur(16px);
+}
+
+[data-theme="light"] {
+  --bg-deep: #f3f8f7;
+  --bg-panel: rgba(255, 255, 255, 0.92);
+  --bg-panel-solid: #ffffff;
+  --bg-panel-alt: rgba(235, 245, 243, 0.85);
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --accent-trail: #e66f00;
+  --accent-trail-2: #fa9d1b;
+  --accent-growth: #09947e;
+  --accent-growth-2: #16bfa6;
+  --accent-pink: #d9366a;
+  --text-primary: #0a2328;
+  --text-secondary: #27484e;
+  --text-muted: #56787e;
+  --border-subtle: rgba(13, 43, 48, 0.1);
+  --border-glow: rgba(9, 148, 126, 0.25);
+  --gradient-trail: linear-gradient(135deg, var(--accent-trail), var(--accent-trail-2));
+  --gradient-growth: linear-gradient(135deg, var(--accent-growth), var(--accent-growth-2));
+  --gradient-bg: linear-gradient(180deg, #f5faf9 0%, #e8f3f1 100%);
+  --shadow-sm: 0 4px 12px rgba(13, 43, 48, 0.06);
+  --shadow-md: 0 12px 32px rgba(13, 43, 48, 0.1);
+  --shadow-lg: 0 24px 60px rgba(13, 43, 48, 0.14);
+  --shadow-glow: 0 0 20px rgba(9, 148, 126, 0.1);
+  --backdrop-blur: blur(16px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--gradient-bg);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background 0.4s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Typography Hierarchy Scale */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+.text-display {
+  font-family: "Fraunces", serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.text-h1 {
+  font-family: "Fraunces", serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+.text-h2 {
+  font-family: "Fraunces", serif;
+  font-size: clamp(20px, 2.8vw, 26px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.text-h3 {
+  font-weight: 600;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
+.text-mono {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.text-body-lg {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.text-body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}

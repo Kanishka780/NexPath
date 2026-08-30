@@ -1,0 +1,272 @@
+.wizard-shell {
+  position: relative;
+  max-width: 720px;
+  margin: 48px auto;
+  padding: 0 24px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wizard-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.wizard-progress-fill {
+  height: 100%;
+  background: var(--gradient-growth);
+  border-radius: 999px;
+}
+
+.wizard-dots {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.wizard-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-subtle);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.wizard-dot--active {
+  background: var(--accent-growth);
+}
+
+.wizard-dot--current {
+  transform: scale(1.4);
+}
+
+.wizard-card {
+  width: 100%;
+  background: var(--bg-panel);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--border-subtle);
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
+}
+
+.wizard-subtitle {
+  margin-bottom: 28px;
+}
+
+.margin-top-xs {
+  margin-top: 6px;
+}
+
+.color-growth {
+  color: var(--accent-growth);
+}
+
+/* Domain grid (step 1) */
+.wizard-option-grid--domains {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.wizard-domain-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wizard-domain-card:hover {
+  border-color: var(--accent-growth);
+  box-shadow: var(--shadow-glow);
+}
+
+.wizard-domain-card--soon {
+  opacity: 0.55;
+}
+
+.wizard-domain-icon {
+  font-size: 28px;
+}
+
+.wizard-domain-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.wizard-domain-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.wizard-soon-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: var(--accent-pink);
+}
+
+/* Single-select pill list (interests / level / time) */
+.wizard-option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wizard-option-pill {
+  text-align: left;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.wizard-option-pill:hover {
+  border-color: var(--accent-trail);
+  background: var(--bg-panel-alt);
+}
+
+/* Skills multi-select (step 4) */
+.wizard-skill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.wizard-skill-chip {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wizard-skill-chip--active {
+  background: var(--gradient-growth);
+  color: var(--bg-deep);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.wizard-experience-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.wizard-experience-label {
+  color: var(--text-muted);
+}
+
+.wizard-experience-input {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-panel-solid);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+}
+
+.wizard-experience-input:focus {
+  border-color: var(--accent-growth);
+}
+
+.wizard-continue-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 16px;
+  border: none;
+  background: var(--gradient-growth);
+  color: var(--bg-deep);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.wizard-back-btn {
+  margin-top: 20px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  letter-spacing: 0.1em;
+}
+
+.wizard-back-btn:hover {
+  color: var(--text-primary);
+}
+
+/* Coming-soon modal */
+.wizard-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 12, 15, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.wizard-modal {
+  max-width: 420px;
+  background: var(--bg-panel-solid);
+  border: 1px solid var(--border-glow);
+  border-radius: 24px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.wizard-modal-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.wizard-modal-close {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border-radius: 14px;
+  border: none;
+  background: var(--gradient-growth);
+  color: var(--bg-deep);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .wizard-option-grid--domains {
+    grid-template-columns: 1fr;
+  }
+  .wizard-card {
+    padding: 28px 22px;
+  }
+}

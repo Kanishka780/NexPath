@@ -1,0 +1,125 @@
+.ask-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gradient-trail);
+  color: var(--bg-deep);
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ask-panel {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  width: min(360px, calc(100vw - 40px));
+  height: 460px;
+  max-height: calc(100vh - 140px);
+  background: var(--bg-panel-solid);
+  border: 1px solid var(--border-glow);
+  border-radius: 22px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 998;
+}
+
+.ask-panel-header {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ask-panel-title {
+  color: var(--text-primary);
+}
+
+.ask-panel-sub {
+  color: var(--accent-growth);
+}
+
+.ask-panel-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ask-bubble {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.ask-bubble--assistant {
+  align-self: flex-start;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border-bottom-left-radius: 4px;
+}
+
+.ask-bubble--user {
+  align-self: flex-end;
+  background: var(--gradient-growth);
+  color: var(--bg-deep);
+  font-weight: 500;
+  border-bottom-right-radius: 4px;
+}
+
+.ask-bubble--thinking {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.ask-panel-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.ask-panel-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 13.5px;
+  outline: none;
+}
+
+.ask-panel-input:focus {
+  border-color: var(--accent-growth);
+}
+
+.ask-panel-send {
+  width: 40px;
+  border-radius: 12px;
+  border: none;
+  background: var(--gradient-growth);
+  color: var(--bg-deep);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ask-panel-send:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
