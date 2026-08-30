@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "./ThemeContext";
 import "./NavBar.css";
 
-type Stage = "onboarding" | "possibilities" | "path";
+type Stage = "onboarding" | "possibilities" | "path" | "profile";
 
 interface NavBarProps {
   userName: string | null;
@@ -30,6 +30,7 @@ export default function NavBar({
     { id: "onboarding", label: "Path Finder", icon: "💬" },
     { id: "possibilities", label: "Explore Domains", icon: "🗺️" },
     { id: "path", label: "My Milestones", icon: "🎯", disabled: !hasPath },
+    { id: "profile", label: "My Profile", icon: "🪪" },
   ];
 
   return (

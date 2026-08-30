@@ -13,6 +13,9 @@
  * Routes:
  *   GET  /health           - sanity check
  *   GET  /skills/:domain   - the skill checklist shown during onboarding for a domain
+ *   GET  /profile/:learnerId - the learner's stored profile (skills, level, prior
+ *                              experience, completed/struggled item ids) without
+ *                              needing to regenerate a path first
  *   POST /possibilities    - top domain matches with match score + explanation (possibility map)
  *   POST /path             - full recommend -> filter known -> expand -> sort -> milestone flow,
  *                            plus a "why this roadmap" summary and a skill-growth breakdown
@@ -360,6 +363,18 @@ app.post("/path", async (req, res) => {
 // The exact skill checklist shown during onboarding for a given domain —
 // served from the backend so the frontend never drifts out of sync with
 // what /path actually knows how to match against.
+app.get("/profile/:learnerId", (req, res) => {
+  const state = getLearnerState(req.params.learnerId);
+  res.json({
+    learnerId: req.params.learnerId,
+    level: state.level,
+    knownSkills: state.knownSkills,
+    priorExperience: state.priorExperience,
+    completedItemIds: Array.from(state.completed),
+    struggledItemIds: Array.from(state.struggled),
+  });
+});
+
 app.get("/skills/:domain", (req, res) => {
   const options = getSkillOptions(req.params.domain);
   res.json({ domain: req.params.domain, skills: options.map((s) => ({ id: s.id, label: s.label })) });

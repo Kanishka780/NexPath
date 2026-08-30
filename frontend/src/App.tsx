@@ -8,11 +8,12 @@ import AuthScreen from "./AuthScreen";
 import ProfileWizard from "./ProfileWizard";
 import PossibilityMap from "./PossibilityMap";
 import PathDashboard from "./PathDashboard";
+import ProfilePage from "./ProfilePage";
 import { stageTransition } from "./motionVariants";
 
 const BACKEND_URL = "http://localhost:4000";
 
-type Stage = "onboarding" | "possibilities" | "path";
+type Stage = "onboarding" | "possibilities" | "path" | "profile";
 
 function AppContent() {
   const { session, isLoading: sessionLoading } = useSupabaseSession();
@@ -145,6 +146,12 @@ function AppContent() {
                 onRefresh={handleRefresh}
                 onStartOver={handleStartOver}
               />
+            </motion.div>
+          )}
+
+          {stage === "profile" && (
+            <motion.div key="profile" {...stageTransition}>
+              <ProfilePage learnerId={learnerId} learnerName={learnerName || "Learner"} />
             </motion.div>
           )}
         </AnimatePresence>
