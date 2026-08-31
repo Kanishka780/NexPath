@@ -83,3 +83,60 @@
   font-size: 12px;
   color: var(--text-primary);
 }
+
+.profile-card--wide {
+  grid-column: 1 / -1;
+}
+
+.profile-item-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg-panel-alt);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.profile-item-name {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.profile-item-badge {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: "IBM Plex Mono", monospace;
+  flex-shrink: 0;
+}
+
+.profile-item-badge--beginner {
+  background: rgba(31, 230, 196, 0.15);
+  color: var(--accent-growth);
+}
+
+.profile-item-badge--intermediate,
+.profile-item-badge--mixed {
+  background: rgba(255, 157, 46, 0.15);
+  color: var(--accent-trail);
+}
+
+.profile-item-badge--advanced {
+  background: rgba(255, 107, 157, 0.15);
+  color: var(--accent-pink);
+}
+
+.profile-item-badge--unknown {
+  background: var(--border-subtle);
+  color: var(--text-muted);
+}

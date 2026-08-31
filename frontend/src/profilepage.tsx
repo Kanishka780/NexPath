@@ -4,13 +4,15 @@ import "./ProfilePage.css";
 
 const BACKEND_URL = "http://localhost:4000";
 
+type ProfileItem = { id: string; name: string; domain: string; difficulty: string };
+
 type ProfileData = {
   learnerId: string;
   level: string;
   knownSkills: string[];
   priorExperience: string;
-  completedItemIds: string[];
-  struggledItemIds: string[];
+  completedItems: ProfileItem[];
+  struggledItems: ProfileItem[];
 };
 
 interface ProfilePageProps {
@@ -50,7 +52,7 @@ export default function ProfilePage({ learnerId, learnerName }: ProfilePageProps
   }
 
   const hasAnySignal =
-    profile.level || profile.knownSkills.length || profile.priorExperience || profile.completedItemIds.length;
+    profile.level || profile.knownSkills.length || profile.priorExperience || profile.completedItems.length;
 
   return (
     <div className="profile-shell">
@@ -109,27 +111,45 @@ export default function ProfilePage({ learnerId, learnerName }: ProfilePageProps
             </motion.div>
           )}
 
-          {profile.completedItemIds.length > 0 && (
+          {profile.completedItems.length > 0 && (
             <motion.div
-              className="profile-card"
+              className="profile-card profile-card--wide"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
             >
               <span className="profile-card-label">Completed so far</span>
-              <p className="profile-card-value">{profile.completedItemIds.length} item(s)</p>
+              <ul className="profile-item-list">
+                {profile.completedItems.map((item) => (
+                  <li key={item.id} className="profile-item-row">
+                    <span className="profile-item-name">{item.name}</span>
+                    <span className={`profile-item-badge profile-item-badge--${item.difficulty.toLowerCase()}`}>
+                      {item.difficulty}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           )}
 
-          {profile.struggledItemIds.length > 0 && (
+          {profile.struggledItems.length > 0 && (
             <motion.div
-              className="profile-card"
+              className="profile-card profile-card--wide"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
               <span className="profile-card-label">Flagged for revision</span>
-              <p className="profile-card-value">{profile.struggledItemIds.length} item(s)</p>
+              <ul className="profile-item-list">
+                {profile.struggledItems.map((item) => (
+                  <li key={item.id} className="profile-item-row">
+                    <span className="profile-item-name">{item.name}</span>
+                    <span className={`profile-item-badge profile-item-badge--${item.difficulty.toLowerCase()}`}>
+                      {item.difficulty}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           )}
         </div>

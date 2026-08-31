@@ -1,16 +1,26 @@
 """
-ml_service.py — NexPath recommender microservice
+ml_service.py — NexPath recommender microservice (TF-IDF, fully local)
 
 Run:
-    pip install fastapi uvicorn sentence-transformers scikit-learn numpy
+    pip install -r requirements.txt
     python ml_service.py
 
 Then POST to http://localhost:8000/recommend
     {"query": "I want to become a frontend developer, I know some HTML/CSS"}
 
-On startup it loads cleaned_corpus.json (put it in the same folder as this
-script) and embeds every course's skills+description once, in memory.
-No DB needed for a 2-day build.
+On startup it loads cleaned_corpus.json and fits a TF-IDF vectorizer over
+every course's skills+description, entirely in-process — no external API
+calls, no rate limits, no network dependency at request time.
+
+NOTE: this replaces the earlier Gemini-embedding-API approach. That
+version hit the free-tier rate limit repeatedly during testing (429s
+even with exponential backoff), which is a hard blocker for a live demo.
+TF-IDF trades semantic depth (it matches on weighted keyword overlap
+rather than deep meaning) for total reliability: it's instant, fits
+comfortably in Render's 512MB free tier, and can never rate-limit or
+go down due to a third-party quota. Given the deadline, reliability
+wins. Swap back to the embedding version later if there's time and a
+higher API quota.
 """
 
 import json
@@ -18,23 +28,21 @@ import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional, List
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
 
 CORPUS_PATH = "cleaned_corpus.json"
-MODEL_NAME = "all-MiniLM-L6-v2"  # small, fast, no API key needed
 
 app = FastAPI(title="NexPath Recommender")
 
-model = None
 corpus = []
-corpus_embeddings = None
+vectorizer = None
+corpus_matrix = None
 
 
 class RecommendRequest(BaseModel):
-    query: str              # learner's goal/interests, free text
-    domain: Optional[str] = None  # optional filter: "webdev" / "datasci" / "ml"
+    query: str
+    domain: Optional[str] = None
     top_k: int = 8
 
 
@@ -48,11 +56,8 @@ class RecommendResult(BaseModel):
 
 
 @app.on_event("startup")
-def load_model_and_corpus():
-    global model, corpus, corpus_embeddings
-
-    print("Loading embedding model...")
-    model = SentenceTransformer(MODEL_NAME)
+def load_corpus_and_fit():
+    global corpus, vectorizer, corpus_matrix
 
     if not os.path.exists(CORPUS_PATH):
         raise RuntimeError(
@@ -63,9 +68,11 @@ def load_model_and_corpus():
     with open(CORPUS_PATH, "r", encoding="utf-8") as f:
         corpus = json.load(f)
 
-    print(f"Embedding {len(corpus)} corpus items...")
     texts = [f"{c['name']}. Skills: {c['skills']}. {c['description']}" for c in corpus]
-    corpus_embeddings = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
+
+    print(f"Fitting TF-IDF over {len(texts)} corpus items (local, no API calls)...")
+    vectorizer = TfidfVectorizer(stop_words="english", max_features=5000)
+    corpus_matrix = vectorizer.fit_transform(texts)
     print("Ready.")
 
 
@@ -76,10 +83,10 @@ def health():
 
 @app.post("/recommend", response_model=List[RecommendResult])
 def recommend(req: RecommendRequest):
-    query_embedding = model.encode([req.query], convert_to_numpy=True)
-    sims = cosine_similarity(query_embedding, corpus_embeddings)[0]
+    query_vec = vectorizer.transform([req.query])
+    sims = cosine_similarity(query_vec, corpus_matrix)[0]
 
-    ranked_idx = np.argsort(sims)[::-1]
+    ranked_idx = sims.argsort()[::-1]
 
     results = []
     for idx in ranked_idx:
@@ -103,4 +110,4 @@ def recommend(req: RecommendRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))

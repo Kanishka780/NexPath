@@ -530,7 +530,7 @@ app.get("/health", (req, res) => {
 
 loadCorpus();
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Path planner running on http://localhost:${PORT}`);
   console.log(`Make sure the FastAPI ML service is running on ${ML_SERVICE_URL}`);

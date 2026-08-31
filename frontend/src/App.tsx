@@ -19,7 +19,6 @@ function AppContent() {
   const { session, isLoading: sessionLoading } = useSupabaseSession();
   const [stage, setStage] = useState<Stage>("onboarding");
   const [query, setQuery] = useState("");
-  const [domain, setDomain] = useState<string | null>(null);
   const [knownSkills, setKnownSkills] = useState<string[]>([]);
   const [priorExperience, setPriorExperience] = useState("");
   const [pathResult, setPathResult] = useState<any>(null);
@@ -70,7 +69,6 @@ function AppContent() {
   }
 
   function handleDomainSelect(selectedDomain: string) {
-    setDomain(selectedDomain);
     fetchPath(query, selectedDomain);
   }
 
@@ -91,7 +89,6 @@ function AppContent() {
   function handleStartOver() {
     setStage("onboarding");
     setQuery("");
-    setDomain(null);
     setKnownSkills([]);
     setPriorExperience("");
     setPathResult(null);
