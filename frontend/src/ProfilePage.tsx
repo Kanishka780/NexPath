@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./ProfilePage.css";
 
-const BACKEND_URL = "http://localhost:4000";
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 type ProfileItem = { id: string; name: string; domain: string; difficulty: string };
 
 type ProfileData = {
