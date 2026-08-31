@@ -17,7 +17,11 @@
 
 ## 🌐 Live Demo
 
-> **🔗 Deployed Link:** _(coming soon — link will be added after deployment)_
+| Component | Deployed Link |
+|-----------|---------------|
+| **Frontend** | 🔗 [nex-path-rust.vercel.app](https://nex-path-rust.vercel.app/) |
+| **Backend API** | 🔗 [nexpath-1.onrender.com](https://nexpath-1.onrender.com) |
+| **ML Service** | 🔗 [nexpath-sxwn.onrender.com](https://nexpath-sxwn.onrender.com) |
 
 ---
 
